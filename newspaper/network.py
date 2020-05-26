@@ -10,7 +10,7 @@ __copyright__ = 'Copyright 2014, Lucas Ou-Yang'
 
 import logging
 import requests
-
+import re
 from .configuration import Configuration
 from .mthreading import ThreadPool
 from .settings import cj
