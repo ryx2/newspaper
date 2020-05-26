@@ -62,7 +62,11 @@ def get_html_2XX_only(url, config=None, response=None):
     response = requests.get(
         url=url, **get_request_kwargs(timeout, useragent, proxies, headers))
 
-    html = _get_html_from_response(response, config)
+    if re.sub("[^a-zA-Z0-9\-=/;]", "", response.headers['Content-Type']).lower() == 'text/html;charset=utf-8':
+        html = _get_html_from_response(response)
+    else:
+        print('not doing ' + response.headers['Content-Type'])
+        html = ""
 
     if config.http_success_only:
         # fail if HTTP sends a non 2XX response
