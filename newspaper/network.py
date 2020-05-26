@@ -63,7 +63,7 @@ def get_html_2XX_only(url, config=None, response=None):
         url=url, **get_request_kwargs(timeout, useragent, proxies, headers))
 
     if re.sub("[^a-zA-Z0-9\-=/;]", "", response.headers['Content-Type']).lower() == 'text/html;charset=utf-8':
-        html = _get_html_from_response(response)
+        html = _get_html_from_response(response, config)
     else:
         print('not doing ' + response.headers['Content-Type'])
         html = ""
